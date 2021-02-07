@@ -16,8 +16,8 @@ const Filter = () => {
       <input
         className="focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-10"
         type="text"
-        aria-label="Filter projects"
-        placeholder="Filter projects"
+        aria-label="Filter posts"
+        placeholder="Filter posts"
       />
     </form>
   );
