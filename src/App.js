@@ -1,9 +1,6 @@
 import { BrowserRouter, Route } from "react-router-dom";
 
-import Filter from "./components/Filter";
-import Header from "./components/Header";
-import NewPost from "./components/NewPost";
-import Posts from "./components/Posts";
+import { Filter, Header, NewPost, Posts } from "./components";
 
 function App() {
   return (
