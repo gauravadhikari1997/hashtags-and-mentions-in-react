@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { MentionsInput, Mention } from "react-mentions";
 import { Link } from "react-router-dom";
 
@@ -9,6 +9,7 @@ const NewPost = () => {
   const [content, setContent] = useState("");
   const [users, setUsers] = useState([]);
   const [tagNames, setTagNames] = useState([]);
+  const myInput = useRef();
 
   useEffect(() => {
     getActors();
@@ -96,6 +97,7 @@ const NewPost = () => {
         <div className="description outline-none">
           <MentionsInput
             className="mentions"
+            inputRef={myInput}
             spellCheck="false"
             placeholder="Describe everything about this post here"
             value={content}
@@ -109,6 +111,7 @@ const NewPost = () => {
                 backgroundColor: "#daf4fa",
               }}
               // onAdd={(id) => setActorIds((actorIds) => [...actorIds, id])}
+              appendSpaceOnAdd={true}
             />
             <Mention
               trigger="#"
@@ -126,10 +129,22 @@ const NewPost = () => {
         </div>
 
         <div className="icons flex text-gray-500 m-2">
-          <div className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full py-1 px-6">
+          <div
+            onClick={() => {
+              myInput.current.focus();
+              setContent((content) => content + "@");
+            }}
+            className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full py-1 px-6"
+          >
             @
           </div>
-          <div className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full py-1 px-6">
+          <div
+            onClick={() => {
+              myInput.current.focus();
+              setContent((content) => content + "#");
+            }}
+            className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full py-1 px-6"
+          >
             #
           </div>
           <div className="count ml-auto text-gray-400 text-xs font-semibold">
