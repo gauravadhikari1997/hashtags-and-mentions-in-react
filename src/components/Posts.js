@@ -23,9 +23,11 @@ const Posts = () => {
   return (
     <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
       {posts && posts.length > 0
-        ? posts.map((post) => (
-            <Card key={post._id} title={post.title} content={post.content} />
-          ))
+        ? posts
+            .sort((a, b) => b.createdAt - a.createdAt)
+            .map((post) => (
+              <Card key={post._id} title={post.title} content={post.content} />
+            ))
         : null}
       <li className="hover:shadow-lg flex rounded-lg">
         <Link

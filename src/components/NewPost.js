@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { MentionsInput, Mention } from "react-mentions";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { APIservice } from "../services";
 
@@ -10,13 +10,14 @@ const NewPost = () => {
   const [users, setUsers] = useState([]);
   const [tagNames, setTagNames] = useState([]);
   const myInput = useRef();
+  const history = useHistory();
 
   useEffect(() => {
     getActors();
   }, []);
 
   function addContent(input) {
-    if (input.length <= 200) {
+    if (input.length <= 350) {
       setContent(input);
     }
   }
@@ -69,11 +70,25 @@ const NewPost = () => {
       let body = newContent.trim();
       //Call to your DataBase like backendModule.savePost(body,  along_with_other_params);
       tagNames.map(async (tag) => {
-        await APIservice.post("/tag", {
-          name: tag,
-        });
+        try {
+          await APIservice.post("/tag", {
+            name: tag,
+          });
+        } catch (error) {
+          console.log(error);
+        }
       });
       console.log(body);
+      try {
+        await APIservice.post("/post", {
+          title,
+          content: body,
+          createdAt: new Date().getTime(),
+        });
+        history.push("/");
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 
@@ -148,7 +163,7 @@ const NewPost = () => {
             #
           </div>
           <div className="count ml-auto text-gray-400 text-xs font-semibold">
-            {200 - content.length}/200
+            {350 - content.length}/350
           </div>
         </div>
         <div className="buttons flex">
