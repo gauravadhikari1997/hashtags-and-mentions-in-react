@@ -5,7 +5,7 @@ const instance = axios.create({
     process.env.REACT_APP_SERVER_API ||
     "https://hashtags-and-mentions-server.onrender.com/api",
   headers: { "Content-Type": "application/json" },
-  timeout: 1000 * 2, // Wait for request to complete in 2 seconds
+  timeout: 1000 * 8, // Wait for request to complete in 8 seconds
 });
 
 export default instance;
