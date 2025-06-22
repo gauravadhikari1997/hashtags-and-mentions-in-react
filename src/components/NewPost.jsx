@@ -93,14 +93,17 @@ const NewPost = () => {
   }
 
   return (
-    <>
-      <div className="heading text-center font-bold text-2xl m-5 text-gray-800">
-        New Post
-      </div>
+    <div className="flex justify-center items-center py-8">
       <form
         onSubmit={savePost}
-        className="editor mx-auto w-10/12 flex flex-col text-gray-800 border border-gray-300 p-4 shadow-lg max-w-2xl"
+        className="w-full max-w-xl bg-white rounded-xl shadow-md border border-gray-100 p-6 flex flex-col gap-4"
       >
+        <div className="text-center mb-2">
+          <h2 className="text-2xl font-bold text-gray-700 mb-1">New Post</h2>
+          <p className="text-sm text-gray-400">
+            Share your thoughts with hashtags and mentions
+          </p>
+        </div>
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -108,77 +111,81 @@ const NewPost = () => {
           spellCheck="false"
           placeholder="Title"
           type="text"
+          required
         />
-        <div className="description outline-none">
+        <div>
           <MentionsInput
+            singleLine={false}
             className="mentions"
             inputRef={myInput}
             spellCheck="false"
             placeholder="Describe everything about this post here"
             value={content}
             onChange={(event) => addContent(event.target.value)}
+            required
           >
             <Mention
               trigger="@"
               data={users}
               markup="@@@____id__^^^____display__@@@^^^"
-              style={{
-                backgroundColor: "#daf4fa",
-              }}
-              // onAdd={(id) => setActorIds((actorIds) => [...actorIds, id])}
-              appendSpaceOnAdd={true}
+              displayTransform={(_, display) => `@${display}`}
+              style={{ backgroundColor: "#daf4fa" }}
+              appendSpaceOnAdd
             />
             <Mention
               trigger="#"
               data={asyncTags}
               markup="$$$____id__~~~____display__$$$~~~"
-              style={{
-                backgroundColor: "#daf4fa",
-              }}
-              onAdd={(display) =>
-                setTagNames((tagNames) => [...tagNames, display])
-              }
-              appendSpaceOnAdd={true}
+              displayTransform={(_, display) => `#${display}`}
+              style={{ backgroundColor: "#daf4fa" }}
+              onAdd={(display) => setTagNames((tags) => [...tags, display])}
+              appendSpaceOnAdd
             />
           </MentionsInput>
         </div>
-
-        <div className="icons flex text-gray-500 m-2">
-          <div
-            onClick={() => {
-              myInput.current.focus();
-              setContent((content) => content + "@");
-            }}
-            className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full py-1 px-6"
-          >
-            @
+        <div className="flex items-center text-gray-500 text-xs justify-between">
+          <div className="flex gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                myInput.current.focus();
+                setContent((content) => content + "@");
+              }}
+              className="px-3 py-1 rounded-full border border-gray-300 hover:bg-gray-100 transition text-base font-semibold"
+            >
+              @
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                myInput.current.focus();
+                setContent((content) => content + "#");
+              }}
+              className="px-3 py-1 rounded-full border border-gray-300 hover:bg-gray-100 transition text-base font-semibold"
+            >
+              #
+            </button>
           </div>
-          <div
-            onClick={() => {
-              myInput.current.focus();
-              setContent((content) => content + "#");
-            }}
-            className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full py-1 px-6"
-          >
-            #
-          </div>
-          <div className="count ml-auto text-gray-400 text-xs font-semibold">
+          <div className="ml-auto text-gray-400 text-xs font-semibold">
             {350 - content.length}/350
           </div>
         </div>
-        <div className="buttons flex">
+        <div className="flex justify-end gap-2 mt-2">
           <Link
             to="/"
-            className="btn border border-gray-300 p-1 px-4 font-semibold cursor-pointer text-gray-500 ml-auto"
+            className="px-4 py-2 rounded-md border border-gray-300 text-gray-500 font-semibold hover:bg-gray-100 transition"
           >
             Cancel
           </Link>
-          <button className="btn border border-indigo-500 p-1 px-4 font-semibold cursor-pointer text-gray-200 ml-2 bg-indigo-500">
+          <button
+            type="submit"
+            className="px-4 py-2 rounded-md bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition"
+          >
             Post
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 
