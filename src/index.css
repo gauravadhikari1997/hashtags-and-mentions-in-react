@@ -3,10 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.mentions {
-  margin: 1em 0;
-}
-
 .mentions--singleLine .mentions__control {
   display: inline-block;
 }

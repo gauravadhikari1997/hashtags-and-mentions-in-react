@@ -3,39 +3,32 @@ import { Link } from "react-router-dom";
 
 const Card = ({ title, content }) => {
   return (
-    <li x-for="item in items">
-      <div
-        href="item.url"
-        className="hover:bg-light-blue-500 hover:border-transparent hover:shadow-lg group block rounded-lg p-4 border border-gray-200"
-      >
-        <div className="grid sm:block lg:grid xl:block grid-cols-2 grid-rows-1 items-center">
-          <div>
-            <span className="leading-6 font-medium text-black">{title}</span>
-          </div>
-          <div>
-            <span className="group-hover:text-light-blue-200 text-gray-500 text-sm font-medium sm:mb-4 lg:mb-0 xl:mb-4">
-              {parse(content, {
-                replace: (domNode) => {
-                  if (domNode.name === "a") {
-                    const node = domNode.children[0];
-                    return (
-                      <Link
-                        to={domNode.attribs.href}
-                        className={
-                          node.data[0] === "#"
-                            ? "text-green-400"
-                            : "text-blue-400"
-                        }
-                      >
-                        {node.data}
-                      </Link>
-                    );
+    <li className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 flex flex-col gap-2 hover:shadow-md transition-shadow">
+      <div className="mb-1">
+        <span className="text-lg font-semibold text-gray-900 line-clamp-2">
+          {title}
+        </span>
+      </div>
+      <div className="text-gray-700 text-sm leading-relaxed break-words">
+        {parse(content, {
+          replace: (domNode) => {
+            if (domNode.name === "a") {
+              const node = domNode.children[0];
+              return (
+                <Link
+                  to={domNode.attribs.href}
+                  className={
+                    node.data && node.data[0] === "#"
+                      ? "text-green-500 font-medium hover:underline"
+                      : "text-blue-500 font-medium hover:underline"
                   }
-                },
-              })}
-            </span>
-          </div>
-        </div>
+                >
+                  {node.data}
+                </Link>
+              );
+            }
+          },
+        })}
       </div>
     </li>
   );
