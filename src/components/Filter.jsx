@@ -1,6 +1,6 @@
-const Filter = () => {
+const Filter = ({ value, onChange }) => {
   return (
-    <form className="relative">
+    <form className="relative" onSubmit={(e) => e.preventDefault()}>
       <svg
         width="20"
         height="20"
@@ -18,6 +18,8 @@ const Filter = () => {
         type="text"
         aria-label="Filter posts"
         placeholder="Filter posts"
+        value={value}
+        onChange={onChange}
       />
     </form>
   );
