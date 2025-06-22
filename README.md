@@ -4,6 +4,8 @@
 
 Learn how to implement # and @ in ReactJS apps quickly and easily using react-mentions npm package
 
+[Read the full blog post for more details and in-depth explanation.](https://gauravadhikari.com/mentions-and-hashtags-in-reactjs/)
+
 ## Prerequisites
 
 - Node.js ≥v18 is installed on your machine
@@ -72,46 +74,4 @@ Note: This project is migrated to Vite (latest as of June 2025), and below are m
     - Old usage of `<Route>` as a direct child of `<BrowserRouter>` and use of `exact` prop (v5 style) is not supported in v6+.
     - Usage of `useHistory` hook (removed in v6+).
   - **Solutions:**
-    - Wrapped all routes in `<Routes>`, used the `element` prop for `<Route>`, and removed `exact`.
-    - Replaced `useHistory` with `useNavigate` in all components.
-
-- **web-vitals Import Error:**
-
-  - The `web-vitals` package was not installed, causing import errors.
-  - **Solution:** Removed all references to `web-vitals` and `reportWebVitals.js`.
-
-- **Other Fixes:**
-  - Ensured all usage of `Link`, `useNavigate`, and other router APIs are v7 compatible.
-  - Verified Tailwind CSS and PostCSS are configured for Vite.
-
----
-
-## Getting Started
-
-1. **Install dependencies:**
-   ```sh
-   yarn install
-   ```
-2. **Start the development server:**
-   ```sh
-   yarn dev
-   ```
-3. **Build for production:**
-   ```sh
-   yarn build
-   ```
-4. **Preview production build:**
-   ```sh
-   yarn preview
-   ```
-
-## Project Structure
-
-- `vite.config.js`: Vite configuration
-- `tailwind.config.js`: Tailwind CSS configuration
-- `postcss.config.js`: PostCSS configuration
-- `src/`: Source code
-
----
-
-For more details, see the [Vite documentation](https://vitejs.dev/guide/), [React 19 Upgrade Guide](https://react.dev/blog/2024/04/25/react-19-upgrade-guide), [React Router v7 docs](https://reactrouter.com/en/main), and [Tailwind CSS documentation](https://tailwindcss.com/docs/installation`).
+    - Wrapped all routes in `<Routes>`, used the `element`
