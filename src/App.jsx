@@ -1,6 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Filter, Header, NewPost, Posts } from "./components";
+import {
+  Filter,
+  Header,
+  NewPost,
+  Posts,
+  UserPage,
+  TagPage,
+} from "./components";
 
 function App() {
   return (
@@ -17,6 +24,8 @@ function App() {
           }
         />
         <Route path="/new" element={<NewPost />} />
+        <Route path="/user/:id" element={<UserPage />} />
+        <Route path="/tag/:id" element={<TagPage />} />
       </Routes>
     </BrowserRouter>
   );

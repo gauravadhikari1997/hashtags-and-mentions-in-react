@@ -3,3 +3,5 @@ export { default as Filter } from "./Filter";
 export { default as Header } from "./Header";
 export { default as NewPost } from "./NewPost";
 export { default as Posts } from "./Posts";
+export { default as UserPage } from "./UserPage";
+export { default as TagPage } from "./TagPage";
