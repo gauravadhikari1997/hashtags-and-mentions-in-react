@@ -3,7 +3,6 @@ import { MentionsInput, Mention } from "react-mentions";
 import { Link, useNavigate } from "react-router-dom";
 
 import { APIservice } from "../services";
-import Filter from "./Filter";
 
 const NewPost = () => {
   const [title, setTitle] = useState("");
