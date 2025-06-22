@@ -1,5 +1,7 @@
 # Creating Mentions And Hashtags In ReactJS
 
+![Creating Mentions And Hashtags In ReactJS](/mentions-and-hashtags-in-reactjs.webp)
+
 Learn how to implement # and @ in ReactJS apps quickly and easily using react-mentions npm package
 
 ## Prerequisites
