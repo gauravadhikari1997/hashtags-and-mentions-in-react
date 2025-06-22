@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { MentionsInput, Mention } from "react-mentions";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { APIservice } from "../services";
+import Filter from "./Filter";
 
 const NewPost = () => {
   const [title, setTitle] = useState("");
@@ -10,7 +11,7 @@ const NewPost = () => {
   const [users, setUsers] = useState([]);
   const [tagNames, setTagNames] = useState([]);
   const myInput = useRef();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getActors();
@@ -85,7 +86,7 @@ const NewPost = () => {
           content: body,
           createdAt: new Date().getTime(),
         });
-        history.push("/");
+        navigate("/");
       } catch (error) {
         console.error(error);
       }
